@@ -31,11 +31,11 @@ public class MyConsumer extends DefaultConsumer {
         System.out.println("--------------- MyConsumer Message ----------------");
         System.out.println("message body :" + new String(body));
         try {
-            Thread.sleep(5000);
+            //Thread.sleep(5000);
             // 手动确认消息,false：不批量签收
-            channel.basicAck(envelope.getDeliveryTag(), false);
-            // 第三参数：是否重回队列
-            //channel.basicNack(envelope.getDeliveryTag(), false, true);
+            //channel.basicAck(envelope.getDeliveryTag(), false);
+            // 未签收，第三参数：是否重回队列
+            channel.basicNack(envelope.getDeliveryTag(), false, true);
         } catch (Exception e) {
             e.printStackTrace();
         }

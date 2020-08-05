@@ -23,10 +23,13 @@ public class ReturnProducer {
         Connection connection = connectionFactory.newConnection();
         // 3、创建通道
         Channel channel = connection.createChannel();
+        // 设置消息确认模式
         channel.confirmSelect();
+        // 添加return监听
         channel.addReturnListener(new ReturnListener() {
             @Override
             public void handleReturn(int i, String s, String s1, String s2, AMQP.BasicProperties basicProperties, byte[] bytes) throws IOException {
+                System.err.println("消息投递失败！！！");
                 System.out.println("i:" +i);
                 System.out.println("s:" +s);
                 System.out.println("s1:" +s1);

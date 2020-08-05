@@ -26,5 +26,7 @@ public class AckProducer {
         // 4、发送消息
         String msg = "this is ack msg !";
         channel.basicPublish(EXCHANG_NAME, ROUTING_KEY, null, msg.getBytes());
+        channel.close();
+        connection.close();
     }
 }
